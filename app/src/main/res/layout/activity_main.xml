@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/life"
+            android:text="Protect yourself from COVID 19"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+        <com.sdsmdg.harjot.rotatingtext.RotatingTextWrapper
+            android:id="@+id/custom_switcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <com.joooonho.SelectableRoundedImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/covid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.448"
+        app:sriv_border_color="#442727"
+        app:sriv_border_width="2dip"
+        app:sriv_left_bottom_corner_radius="0dip"
+        app:sriv_left_top_corner_radius="0dip"
+        app:sriv_oval="false"
+        app:sriv_right_bottom_corner_radius="100dip"
+        app:sriv_right_top_corner_radius="100dip" />
+
+    <com.ogaclejapan.arclayout.ArcLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        app:arc_axisRadius="140dp"
+        app:arc_freeAngle="false"
+        app:arc_origin="left"
+        app:arc_radius="198dp"
+        app:arc_reverseAngle="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428">
+
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/info"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/complain"
+            android:src="@drawable/complain"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/chat"
+            android:src="@drawable/chat"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/statistic"
+            android:src="@drawable/statistic"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/about_app"
+            android:src="@drawable/android"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
+    </com.ogaclejapan.arclayout.ArcLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:padding="30dp"
+        android:src="@drawable/covid_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
