@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,13 +22,7 @@
             android:fontFamily="@font/life"
             android:text="Protect yourself from COVID 19"
             android:textColor="@color/text_color"
-            android:textSize="18sp" />
-
-        <com.sdsmdg.harjot.rotatingtext.RotatingTextWrapper
-            android:id="@+id/custom_switcher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:textSize="25sp" />
     </LinearLayout>
 
     <com.joooonho.SelectableRoundedImageView

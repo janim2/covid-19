@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,240 +29,245 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="-110dp">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ABOUT COVID 19"
-                    android:fontFamily="@font/life"
-                    android:textColor="@color/text_color"
-                    android:gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ABOUT COVID 19"
+                        android:fontFamily="@font/life"
+                        android:textColor="@color/text_color"
+                        android:gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
 The disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and in more severe cases, difficulty breathing."
-                    android:textColor="@color/colorAccent"
-                    android:gravity="center"
-                    android:fontFamily="@font/life"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="HOW IT SPREADS"
-                    android:fontFamily="@font/life"
-                    android:textColor="@color/text_color"
-                    android:gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp">
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/cough"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Inhaling Cough of infected person"
                         android:textColor="@color/colorAccent"
                         android:gravity="center"
                         android:fontFamily="@font/life"
-                        android:layout_weight="1"
-
                         android:textSize="14sp"/>
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="HOW IT SPREADS"
+                        android:fontFamily="@font/life"
+                        android:textColor="@color/text_color"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp">
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/cough"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Inhaling Cough of infected person"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:fontFamily="@font/life"
+                            android:layout_weight="1"
+
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Inhaling Sneeze of infected person"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/life"
+                            android:textSize="14sp"/>
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/sneeze"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp">
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/avoid"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Touching of nose, mouth or eyes after touching infected surface"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/life"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SYMPTOMS"
+                        android:fontFamily="@font/life"
+                        android:textColor="@color/text_color"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cough\nSneezing\nFever\nDifficulty breathing"
+                        android:textColor="@color/colorPrimary"
+                        android:gravity="center"
+                        android:fontFamily="@font/life"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="14sp"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PREVENTION"
+                        android:fontFamily="@font/life"
+                        android:textColor="@color/text_color"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp">
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/avoid"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="AVOID touching face in general"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/life"
+                            android:textSize="14sp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Stay at home. Only move out when absolutely neccessary"
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/life"
+                            android:textSize="14sp"/>
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/stay_home"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="30dp">
+
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:src="@drawable/hand_wash"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Wash hands as regularly as possible. Use hand sanitizer in absence of water."
+                            android:textColor="@color/colorAccent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/life"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Inhaling Sneeze of infected person"
-                        android:textColor="@color/colorAccent"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:fontFamily="@font/life"
-                        android:textSize="14sp"/>
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/sneeze"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp">
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/avoid"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="Touching noise, eyes or mouth after touching infected surface"
                         android:textColor="@color/colorAccent"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/life"
-                        android:textSize="14sp"/>
-
-
+                        android:textSize="14sp" />
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SYMPTOMS"
-                    android:fontFamily="@font/life"
-                    android:textColor="@color/text_color"
-                    android:gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cough\nSneezing\nFever\nDifficulty breathing"
-                    android:textColor="@color/colorPrimary"
-                    android:gravity="center"
-                    android:fontFamily="@font/life"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="14sp"/>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="PREVENTION"
-                    android:fontFamily="@font/life"
-                    android:textColor="@color/text_color"
-                    android:gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:textSize="16sp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp">
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/avoid"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="AVOID touching face in general"
-                        android:textColor="@color/colorAccent"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/life"
-                        android:textSize="14sp"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Stay at home. Only move out when absolutely neccessary"
-                        android:textColor="@color/colorAccent"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/life"
-                        android:textSize="14sp"/>
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/stay_home"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="30dp">
-
-
-                    <ImageView
-                        android:layout_width="53dp"
-                        android:layout_height="53dp"
-                        android:src="@drawable/hand_wash"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Wash hands as regularly as possible. Use hand sanitizer in absence of water."
-                        android:textColor="@color/colorAccent"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/life"
-                        android:textSize="14sp"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
+            </ScrollView>
         </android.support.v7.widget.CardView>
     </LinearLayout>
 
 
 
-</ScrollView>
+</LinearLayout>

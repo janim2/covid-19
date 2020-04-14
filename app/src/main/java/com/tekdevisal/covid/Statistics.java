@@ -20,7 +20,7 @@ public class Statistics extends AppCompatActivity {
         browser = findViewById(R.id.webview);
         browser.setWebViewClient(new MyBrowser());
 
-        browser.loadUrl("https://www.google.com");
+        browser.loadUrl("https://ghanahealthservice.org/covid19/");
     }
 
     private class MyBrowser extends WebViewClient {

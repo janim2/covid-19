@@ -69,6 +69,7 @@
                     android:layout_marginBottom="10dp">
 
                     <com.joooonho.SelectableRoundedImageView
+                        android:id="@+id/call"
                         android:layout_width="43dp"
                         android:layout_height="43dp"
                         android:scaleType="centerCrop"
@@ -83,12 +84,12 @@
                         app:sriv_right_top_corner_radius="100dip" />
 
                     <com.joooonho.SelectableRoundedImageView
-                        android:id="@+id/complain"
+                        android:id="@+id/whatsapp"
                         android:layout_width="43dp"
                         android:layout_height="43dp"
+                        android:padding="5dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/whatsapp"
-                        android:padding="5dp"
                         app:sriv_border_color="@color/colorPrimaryDark"
                         app:sriv_border_width="2dip"
                         app:sriv_left_bottom_corner_radius="100dip"
@@ -120,6 +121,7 @@
                     android:layout_marginTop="-22dp"/>
 
                 <EditText
+                    android:id="@+id/subject"
                  android:layout_width="250dp"
                  android:layout_height="43dp"
                  android:hint="Subject"
@@ -130,6 +132,7 @@
                  android:background="@android:drawable/editbox_background"/>
 
             <MultiAutoCompleteTextView
+                android:id="@+id/message"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
@@ -141,6 +144,7 @@
                 android:background="@android:drawable/editbox_background"/>
 
                 <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/send"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
                     android:scaleType="centerCrop"

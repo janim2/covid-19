@@ -3,21 +3,17 @@ package com.tekdevisal.covid;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.joooonho.SelectableRoundedImageView;
-import com.sdsmdg.harjot.rotatingtext.RotatingTextSwitcher;
-import com.sdsmdg.harjot.rotatingtext.RotatingTextWrapper;
-import com.sdsmdg.harjot.rotatingtext.models.Rotatable;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    private RotatingTextWrapper rotatingTextSwitcher;
-    private SelectableRoundedImageView complain;
-
+    private FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +23,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        mauth = FirebaseAuth.getInstance();
+
         getSupportActionBar().setTitle("COVID 19 | HOME");
-
-        rotatingTextSwitcher = findViewById(R.id.custom_switcher);
-        rotatingTextSwitcher.setSize(19);
-
-        Rotatable rotatable = new Rotatable(Color.parseColor("#f8615a"), 5000, "SAFE", "INDOORS", "INFORMED");
-        rotatable.setSize(21);
-        rotatable.setAnimationDuration(500);
-
-        rotatingTextSwitcher.setContent("BE ?", rotatable);
 
         findViewById(R.id.info).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, About_.class));
@@ -57,10 +46,22 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.about_app).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, App_description.class));
         });
+
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mauth.getCurrentUser() != null){
+
+        }else{
+            startActivity(new Intent(MainActivity.this, Login_.class));
+        }
+    }
+
 }
