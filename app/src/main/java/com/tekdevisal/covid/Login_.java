@@ -2,7 +2,10 @@ package com.tekdevisal.covid;
 
 import android.app.Application;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -63,35 +66,42 @@ public class Login_ extends AppCompatActivity {
 
         continueNextButton.setOnClickListener(v -> {
             if(continueNextButton.getText().equals("Submit") || checker.equals("Code Sent")){
-                String verificationcode = codeText.getText().toString().trim();
+                if(isNetworkAvailable()){
+                    String verificationcode = codeText.getText().toString().trim();
 
-                if(verificationcode.equals("")){
-                    snackbar = Snackbar.make(findViewById(android.R.id.content),
-                            "Code required", Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                    if(verificationcode.equals("")){
+                        snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                "Code required", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }else{
+                        loadingbar.setTitle("Code Verification");
+                        loadingbar.setMessage("Please Wait. We are verifying your phone number");
+                        loadingbar.setCanceledOnTouchOutside(false);
+                        loadingbar.show();
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationcode);
+                        signInWithPhoneAuthCredential(credential);
+                    }
                 }else{
-                    loadingbar.setTitle("Code Verification");
-                    loadingbar.setMessage("Please Wait. We are verifying your phone number");
-                    loadingbar.setCanceledOnTouchOutside(false);
-                    loadingbar.show();
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationcode);
-                    signInWithPhoneAuthCredential(credential);
+                    phoneNumber = ccp.getFullNumberWithPlus();
+                    if(!phoneNumber.equals("")){
+                        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                                phoneNumber,        // Phone number to verify
+                                60,                 // Timeout duration
+                                TimeUnit.SECONDS,   // Unit of timeout
+                                this,               // Activity (for callback binding)
+                                callbacks);        // OnVerificationStateChangedCallbacks
+                    }else{
+                        snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                "Number Invalid", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
                 }
-            }else{
-                phoneNumber = ccp.getFullNumberWithPlus();
-                if(!phoneNumber.equals("")){
-                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                            phoneNumber,        // Phone number to verify
-                            60,                 // Timeout duration
-                            TimeUnit.SECONDS,   // Unit of timeout
-                            this,               // Activity (for callback binding)
-                            callbacks);        // OnVerificationStateChangedCallbacks
                 }else{
                     snackbar = Snackbar.make(findViewById(android.R.id.content),
-                            "Number Invalid", Snackbar.LENGTH_LONG);
+                            "No internet connection", Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
-            }
+
         });
 
         callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -154,4 +164,12 @@ public class Login_ extends AppCompatActivity {
                     }
                 });
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }

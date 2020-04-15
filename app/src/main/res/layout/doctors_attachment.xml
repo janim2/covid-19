@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:padding="17dp"
+    app:cardCornerRadius="7dp"
+    android:id="@+id/doc_card"
+    app:cardElevation="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/doctor_name"
+        android:textSize="15sp"
+        android:text="ouse"
+        android:textColor="@color/text_color"
+        android:gravity="center"
+        android:fontFamily="@font/life"/>
+
+</android.support.v7.widget.CardView>

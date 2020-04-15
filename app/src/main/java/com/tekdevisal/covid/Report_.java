@@ -2,6 +2,7 @@ package com.tekdevisal.covid;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -152,10 +154,9 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
 
         latitudeD = myLocation.getLatitude();
         longitudeD = myLocation.getLongitude();
-        location_address = locationHelper.getAddress(latitudeD, longitudeD).toString();
-
-        reference = FirebaseDatabase.getInstance().getReference("reports").child(myauth.getCurrentUser().getUid());
-
+//        location_address = locationHelper.getAddress(latitudeD, longitudeD).toString();
+        reference = FirebaseDatabase.getInstance().getReference("reports")
+                .child(myauth.getCurrentUser().getUid());
         if(myLocation != null){
 
             final HashMap<String, Object> report_ = new HashMap<>();
@@ -163,7 +164,7 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
             report_.put("message", message);
             report_.put("latitude", latitudeD);
             report_.put("longitude", longitudeD);
-            report_.put("address", location_address);
+//            report_.put("address", location_address);
 
             reference.push().setValue(report_).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){

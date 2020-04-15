@@ -103,6 +103,15 @@
             android:padding="10dp"
             android:background="@drawable/curved_corners"/>
 
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/logout"
+            android:src="@drawable/exit"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
     </com.ogaclejapan.arclayout.ArcLayout>
 
     <ImageView
