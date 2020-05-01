@@ -16,17 +16,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="213dp"
+            android:layout_height="213dp"
+            android:scaleType="centerCrop"
             android:layout_gravity="center"
-            android:src="@drawable/info" />
+            android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="COVID 19"
+            android:text="Covaid"
             android:fontFamily="@font/life"
             android:textColor="@color/colorPrimary"
             android:textSize="26sp" />

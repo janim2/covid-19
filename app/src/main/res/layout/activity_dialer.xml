@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Dialer">
 
+
+
     <ImageView
         android:id="@+id/profile_image_calling"
         android:layout_width="match_parent"

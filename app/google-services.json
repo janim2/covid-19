@@ -8,12 +8,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1088720325984:android:9b8d6c3b64fe3646e5a205",
+        "android_client_info": {
+          "package_name": "com.tekdevisal.chelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088720325984-655ebhucokj0u8l5oth8gj38imi1e3m7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tekdevisal.chelper",
+            "certificate_hash": "78de727ef1d6395159d27d6e500168fd30fdea28"
+          }
+        },
+        {
+          "client_id": "1088720325984-niep1mki2qksloceseeml7mqh5u8gdhb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-IejUKrRbWDzG9cOobXKlTEK0ZkQQCX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088720325984-niep1mki2qksloceseeml7mqh5u8gdhb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1088720325984:android:c7e0855795470b35e5a205",
         "android_client_info": {
           "package_name": "com.tekdevisal.covid"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1088720325984-ga3r9phv8h12vo3dqfgc2npn2lv670a3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tekdevisal.covid",
+            "certificate_hash": "78de727ef1d6395159d27d6e500168fd30fdea28"
+          }
+        },
         {
           "client_id": "1088720325984-niep1mki2qksloceseeml7mqh5u8gdhb.apps.googleusercontent.com",
           "client_type": 3

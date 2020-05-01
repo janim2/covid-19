@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.tekdevisal.covid"
+        applicationId "com.tekdevisal.chelper"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
     implementation 'com.google.firebase:firebase-analytics:16.0.4'
+    implementation 'com.google.firebase:firebase-messaging:16.0.4'
 //    firebase ends here
 
     //for the semi circular image view
@@ -56,7 +57,26 @@ dependencies {
 //    easy permissions
     implementation 'pub.devrel:easypermissions:2.0.1'
 
+    implementation 'com.android.volley:volley:1.1.1'
+
+//    video api
+    implementation 'com.opentok.android:opentok-android-sdk:2.16.5'
+
+    //google maps
+
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+
+//    gilde
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-geo-sdk:2.4.2'
+
+    implementation 'com.roughike:swipe-selector:1.0.6'
+
 }
 apply plugin: 'com.google.gms.google-services'

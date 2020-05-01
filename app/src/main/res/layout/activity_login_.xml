@@ -1,98 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login_">
+    tools:context=".Login_"
+    android:background="@color/colorAccent">
 
-
-    <TextView
-        android:id="@+id/textview1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp">
-    </TextView>
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:id="@+id/phoneAuth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textview1"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:padding="8dp">
+<!--        <ImageView-->
+<!--            android:layout_width="106dp"-->
+<!--            android:layout_height="106dp"-->
+<!--            android:src="@drawable/covid"-->
+<!--            android:layout_gravity="center"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/userchoice"
+            android:layout_marginTop="35dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone Number:"
-                android:textStyle="bold"
+                android:text="Who are you?"
+                android:layout_marginTop="30dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/life"
                 android:textColor="@color/text_color"
-                android:textSize="15sp" />
+                android:gravity="center"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:id="@+id/user_"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/avatar"/>
+
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="100dp"
+                    android:background="@color/colorPrimary"/>
+
+                <RadioButton
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:id="@+id/doctor_"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/doctor"/>
+                </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+        </TextView>
+
+
+        <RelativeLayout
+            android:id="@+id/phoneAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:orientation="vertical">
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/ccp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    app:ccp_defaultNameCode="GH" />
-
-                <EditText
-                    android:id="@+id/phoneText"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:hint="304123123123"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number:"
+                    android:textStyle="bold"
                     android:textColor="@color/text_color"
-                    android:textColorHint="@android:color/darker_gray"
-                    android:inputType="phone"
-                    android:singleLine="true"
-                    android:backgroundTint="@android:color/white"/>
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        app:ccp_defaultNameCode="GH" />
+
+                    <EditText
+                        android:id="@+id/phoneText"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="304123123123"
+                        android:layout_weight="1"
+                        android:maxLines="10"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@android:color/darker_gray"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:backgroundTint="@android:color/darker_gray"/>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+        </RelativeLayout>
 
 
-     <EditText
-        android:id="@+id/codeText"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="25dp"
-        android:hint="Write you code here..."
-        android:textColor="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:inputType="phone"
-        android:singleLine="true"
-        android:layout_below="@+id/phoneAuth"
-        android:drawableTint="@android:color/white"
-        android:backgroundTint="@android:color/white"
-        android:visibility="gone"/>
+        <EditText
+            android:id="@+id/codeText"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="25dp"
+            android:hint="Write you code here..."
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:drawableTint="@android:color/white"
+            android:backgroundTint="@android:color/white"
+            android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/continueNextButton"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/codeText"
-        android:layout_centerHorizontal="true"
-        android:text="Continue"
-        android:textAllCaps="false"
-        android:layout_marginTop="6dp"
-        android:textSize="15dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/continueNextButton"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="Continue"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_marginTop="6dp"
+            android:textSize="15dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+
+
+</ScrollView>

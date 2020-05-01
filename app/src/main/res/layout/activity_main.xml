@@ -8,21 +8,54 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/top_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:fontFamily="@font/life"
+            android:gravity="center"
             android:text="Protect yourself from COVID 19"
             android:textColor="@color/text_color"
-            android:textSize="25sp" />
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/is_available_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:visibility="gone"
+        android:background="@drawable/curved_buttom_doc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:paddingLeft="30dp"
+            android:fontFamily="@font/life"
+            android:text="Check if you ready" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="30dp"
+            android:id="@+id/is_available_switch"
+            android:layout_weight="2"/>
     </LinearLayout>
 
     <com.joooonho.SelectableRoundedImageView
@@ -88,6 +121,16 @@
         <ImageView
             android:layout_width="66dp"
             android:layout_height="66dp"
+            android:id="@+id/reports"
+            android:src="@drawable/bell"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:id="@+id/statistic"
             android:src="@drawable/statistic"
             android:scaleType="centerCrop"
@@ -114,12 +157,21 @@
 
     </com.ogaclejapan.arclayout.ArcLayout>
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:padding="30dp"-->
+<!--        android:src="@drawable/covid_logo"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <com.roughike.swipeselector.SwipeSelector
+        android:id="@+id/swipe_selector"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:padding="30dp"
-        android:src="@drawable/covid_logo"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:swipe_descriptionTextAppearance="@style/text_appearance"/>
+
 </android.support.constraint.ConstraintLayout>
