@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,7 @@ public class Live_Chat extends AppCompatActivity {
     private String user_type;
     private Accessories live_accessories;
     private LinearLayout phone_call_layout;
+    private FirebaseAuth mauth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class Live_Chat extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Covaid | SELECT");
 
+        mauth = FirebaseAuth.getInstance();
         live_accessories = new Accessories(this);
 
         doctors_RecyclerView = findViewById(R.id.doctors_recyclerView);
@@ -83,7 +86,8 @@ public class Live_Chat extends AppCompatActivity {
     private void fetch_usersIDs() {
         try {
             try {
-                DatabaseReference fetchusersids = FirebaseDatabase.getInstance().getReference("recent_calls");
+                DatabaseReference fetchusersids = FirebaseDatabase.getInstance().getReference("recent_calls")
+                        .child(mauth.getCurrentUser().getUid());
                 fetchusersids.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 if(isNetworkAvailable()){
                     FirebaseAuth.getInstance().signOut();
                     main_accessor.put("has_named", "false");
+                    Doctor_is_UnAvailable();
                     startActivity(new Intent(MainActivity.this,Login_.class));
                 }else{
                     snackbar = Snackbar.make(findViewById(android.R.id.content),

@@ -42,7 +42,7 @@
                     android:layout_centerInParent="true"
                     android:gravity="center"
                     android:background="@drawable/rounded_border_edittext"
-                    android:alpha="0.9">
+                    android:alpha="1.3">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                         android:paddingBottom="0dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:src="@drawable/vidyo_io_vertical_dark_at_2x"/>
+                        android:src="@drawable/logo"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -65,18 +65,53 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="25dp"
-                            android:textSize="15sp"
+                            android:textSize="20sp"
+                            android:id="@+id/client_name"
                             android:width="110dp"
-                            android:gravity="end"
-                            android:maxLines="1"
+                            android:gravity="center"
                             android:paddingEnd="5dp"
-                            android:text="Host"/>
+                            android:textColor="@android:color/white"/>
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
+                            android:visibility="gone"
+                            android:textSize="12sp"
+                            android:id="@+id/hostTextBox"
+                            android:elegantTextHeight="true"
+                            android:enabled="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:inputType="text"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingTop="0dp"
+                            android:background="@android:color/transparent"
+                            android:hint="example.vidyo.io" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="15sp"
+                            android:width="110dp"
+                            android:gravity="center"
+                            android:paddingEnd="5dp"
+                            android:textColor="@android:color/white"
+                            android:text="waiting to be connected"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:visibility="gone"
                             android:textSize="12sp"
                             android:id="@+id/hostTextBox"
                             android:elegantTextHeight="true"
@@ -101,21 +136,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:visibility="gone"
                         android:layout_marginBottom="5dp">
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="25dp"
                             android:textSize="15sp"
                             android:width="110dp"
-                            android:gravity="end"
+                            android:gravity="center"
                             android:maxLines="1"
+                            android:textColor="@android:color/white"
                             android:paddingEnd="5dp"
-                            android:text="Token"/>
+                            android:text="Confirm to be connected"/>
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
                             android:textSize="12sp"
+                            android:visibility="gone"
                             android:id="@+id/tokenTextBox"
                             android:elegantTextHeight="true"
                             android:enabled="true"
@@ -137,6 +175,7 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp">
@@ -177,6 +216,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:visibility="gone"
                         android:layout_marginBottom="5dp">
 
                         <TextView
@@ -310,6 +350,7 @@
                     android:layout_height="match_parent"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:visibility="invisible"
                     android:gravity="center_horizontal|bottom"/>
                 <TextView
                     android:id="@+id/toolbarStatusText"
@@ -330,7 +371,8 @@
                 <RelativeLayout
                     android:layout_height="match_parent"
                     android:layout_width="0dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:visibility="invisible">
 
                     <ToggleButton
                         android:id="@+id/toggle_debug"

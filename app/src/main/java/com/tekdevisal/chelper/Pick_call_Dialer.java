@@ -76,7 +76,7 @@ public class Pick_call_Dialer extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                                if(dataSnapshot.exists()){
+                                if(snap.exists()){
                                     call_reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -118,6 +118,8 @@ public class Pick_call_Dialer extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Intent gotovideo = new Intent(getApplicationContext(), VideoChat_Activity.class);
                             gotovideo.putExtra("action","ipicked");
+                            gotovideo.putExtra("users_name",doc_name);
+                            gotovideo.putExtra("users_id",doc_id);
                             new Accessories(getApplicationContext()).put("action", "ipicked");
                             startActivity(gotovideo);
                             finish();

@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.tekdevisal.chelper.Dialer;
 import com.tekdevisal.chelper.Models.Doctors;
 import com.tekdevisal.chelper.R;
+import com.tekdevisal.chelper.VideoChat_Activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,19 +56,11 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
         title.setText(itemList.get(position).getName());
 
         doc_card.setOnClickListener(v -> {
-            final HashMap<String, Object> calling = new HashMap<>();
-            calling.put("ringing", auth.getCurrentUser().getUid());
-
-            reference.child(itemList.get(position).getId()).setValue(calling).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    Intent togoCall = new Intent(context, Dialer.class);
-                    togoCall.putExtra("doc_id", itemList.get(position).getId());
-                    togoCall.putExtra("doc_name", itemList.get(position).getName());
-                    togoCall.putExtra("action", "iamcalling");
-                    v.getContext().startActivity(togoCall);
-                }
-            });
-
+            Intent togoCall = new Intent(context, VideoChat_Activity.class);
+            togoCall.putExtra("doc_id", itemList.get(position).getId());
+            togoCall.putExtra("doc_name", itemList.get(position).getName());
+            togoCall.putExtra("action", "icalled");
+            v.getContext().startActivity(togoCall);
         });
 
 

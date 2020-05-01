@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -77,6 +82,7 @@ dependencies {
     implementation 'org.infobip.mobile.messaging.api:infobip-mobile-messaging-android-geo-sdk:2.4.2'
 
     implementation 'com.roughike:swipe-selector:1.0.6'
+    implementation files('libs/vidyoclient.jar')
 
 }
 apply plugin: 'com.google.gms.google-services'

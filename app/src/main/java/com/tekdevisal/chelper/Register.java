@@ -117,7 +117,7 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
                     });
 
                 }
-                }
+            }
             else{
                 if(mauth.getCurrentUser() != null){
                     doctor_reference = FirebaseDatabase.getInstance().getReference("doctors").child(mauth.getCurrentUser().getUid());
