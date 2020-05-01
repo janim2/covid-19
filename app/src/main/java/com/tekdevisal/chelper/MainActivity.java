@@ -465,4 +465,15 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
 //        has_open_video = "";
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Doctor_is_UnAvailable();
+    }
 }

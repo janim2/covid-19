@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -790,7 +792,16 @@ public class VideoChat_Activity extends Activity implements
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("calls");
         reference.child(doctors_id).setValue(calling).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-               Toast.makeText(VideoChat_Activity.this, "Call placed", Toast.LENGTH_LONG).show();
+                //remove doctor from available
+                FirebaseDatabase.getInstance().getReference("available")
+                        .child(doctors_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(VideoChat_Activity.this, "Call placed", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
     }
@@ -875,6 +886,9 @@ public class VideoChat_Activity extends Activity implements
                 .child(my_id).child(user_id);
         add_recent.setValue(recent).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
+                //readd doctor as available
+                FirebaseDatabase.getInstance().getReference("available").child(doctors_id)
+                        .child("doc").setValue("here");
             }
         });
     }
