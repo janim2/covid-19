@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.tekdevisal.chelper.Dialer;
+import com.tekdevisal.chelper.Helpers.Accessories;
 import com.tekdevisal.chelper.MainActivity;
 import com.tekdevisal.chelper.Pick_call_Dialer;
 
@@ -24,6 +24,8 @@ public class Incoming_calls_service extends Service {
 
     FirebaseAuth myauth = FirebaseAuth.getInstance();
     String caller_id = "", caller_name;
+    Accessories serviceAccessor;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,9 +52,10 @@ public class Incoming_calls_service extends Service {
                                     caller_name = dataSnapshot.child("name").getValue().toString();
                                     Intent gotodialer = new Intent(getApplicationContext(), Pick_call_Dialer.class);
                                     gotodialer.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    gotodialer.putExtra("doc_id", caller_id);
-                                    gotodialer.putExtra("doc_name", caller_name);
-                                    gotodialer.putExtra("action", "accepting_call");
+                                    serviceAccessor = new Accessories(getApplicationContext());
+                                    serviceAccessor.put("doc_id", caller_id);
+                                    serviceAccessor.put("doc_name", caller_name);
+                                    serviceAccessor.put("action", "accepting_call");
                                     startActivity(gotodialer);
                                 }
                             }

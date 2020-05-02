@@ -65,7 +65,7 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
 
 //    video api
-    implementation 'com.opentok.android:opentok-android-sdk:2.16.5'
+//    implementation 'com.opentok.android:opentok-android-sdk:2.16.5'
 
     //google maps
 

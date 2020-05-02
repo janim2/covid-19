@@ -17,7 +17,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.tekdevisal.chelper.Dialer;
 import com.tekdevisal.chelper.Models.Doctors;
 import com.tekdevisal.chelper.Models.Report_Model;
 import com.tekdevisal.chelper.R;

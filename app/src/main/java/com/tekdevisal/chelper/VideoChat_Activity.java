@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.tekdevisal.chelper.Helpers.Accessories;
 import com.tekdevisal.chelper.VidyoAPI.IVideoFrameListener;
 import com.tekdevisal.chelper.VidyoAPI.Logger;
 import com.tekdevisal.chelper.VidyoAPI.VideoFrameLayout;
@@ -120,6 +121,7 @@ public class VideoChat_Activity extends Activity implements
     private String action, users_name, doctors_id, doctors_name;
     private TextView client_name;
     private FirebaseAuth myauth;
+    private Accessories videoaccessor;
 
     /*
      *  Operating System Events
@@ -131,7 +133,7 @@ public class VideoChat_Activity extends Activity implements
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_video_chat_);
-
+        videoaccessor = new Accessories(this);
         // Initialize the member variables
         mControlsLayout = (LinearLayout) findViewById(R.id.controlsLayout);
         mToolbarLayout = (LinearLayout) findViewById(R.id.toolbarLayout);
@@ -161,10 +163,10 @@ public class VideoChat_Activity extends Activity implements
         myauth = FirebaseAuth.getInstance();
 
         //strings
-        action = getIntent().getStringExtra("action");
-        users_name = getIntent().getStringExtra("users_name");
-        doctors_name = getIntent().getStringExtra("doc_name");
-        doctors_id = getIntent().getStringExtra("doc_id");
+        action = videoaccessor.getString("action");
+        users_name = videoaccessor.getString("users_name");
+        doctors_name = videoaccessor.getString("doc_name");
+        doctors_id = videoaccessor.getString("doc_id");
         //strings
 
         if(action.equals("ipicked")){
@@ -554,6 +556,8 @@ public class VideoChat_Activity extends Activity implements
                         RemoveCall_From_database();
 
                     case DisconnectedUnexpected:
+                        RemoveCall_From_database();
+
                     case Failure:
                         RemoveCall_From_database();
 
@@ -794,21 +798,18 @@ public class VideoChat_Activity extends Activity implements
             if(task.isSuccessful()){
                 //remove doctor from available
                 FirebaseDatabase.getInstance().getReference("available")
-                        .child(doctors_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(VideoChat_Activity.this, "Call placed", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                        .child(doctors_id).removeValue().addOnCompleteListener(task1 -> {
+                            if(task1.isSuccessful()){
+                                Toast.makeText(VideoChat_Activity.this, "Call placed", Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
     }
 
     private void RemoveCall_From_database() {
         if(action.equals("ipicked")){
-            Toast.makeText(VideoChat_Activity.this, "Ended", Toast.LENGTH_LONG).show();
+//            Toast.makeText(VideoChat_Activity.this, "Ended", Toast.LENGTH_LONG).show();
             DatabaseReference call_ref = FirebaseDatabase.getInstance().getReference("calls")
                     .child(myauth.getCurrentUser().getUid());
             call_ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -887,8 +888,14 @@ public class VideoChat_Activity extends Activity implements
         add_recent.setValue(recent).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 //readd doctor as available
-                FirebaseDatabase.getInstance().getReference("available").child(doctors_id)
-                        .child("doc").setValue("here");
+                if(action.equals("ipicked")){
+                    FirebaseDatabase.getInstance().getReference("available").child(myauth.getCurrentUser().getUid())
+                            .child("doc").setValue("here");
+                }else{
+                    FirebaseDatabase.getInstance().getReference("available").child(doctors_id)
+                            .child("doc").setValue("here");
+                }
+
             }
         });
     }

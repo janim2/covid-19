@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.tekdevisal.chelper.Dialer;
+import com.tekdevisal.chelper.Helpers.Accessories;
 import com.tekdevisal.chelper.Models.Doctors;
 import com.tekdevisal.chelper.R;
 import com.tekdevisal.chelper.VideoChat_Activity;
@@ -25,6 +26,7 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
     Context context;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("calls");
+    Accessories adapater;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         View view;
@@ -56,11 +58,17 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
         title.setText(itemList.get(position).getName());
 
         doc_card.setOnClickListener(v -> {
-            Intent togoCall = new Intent(context, VideoChat_Activity.class);
-            togoCall.putExtra("doc_id", itemList.get(position).getId());
-            togoCall.putExtra("doc_name", itemList.get(position).getName());
-            togoCall.putExtra("action", "icalled");
-            v.getContext().startActivity(togoCall);
+            adapater = new Accessories(context);
+            if(adapater.getString("user_type").equals("doctor")){
+                Toast.makeText(context,"messaging functionality will be added soon", Toast.LENGTH_LONG).show();
+            }else{
+                Intent togoCall = new Intent(context, VideoChat_Activity.class);
+                adapater.put("doc_id", itemList.get(position).getId());
+                adapater.put("doc_name", itemList.get(position).getName());
+                adapater.put("action", "icalled");
+                v.getContext().startActivity(togoCall);
+            }
+
         });
 
 

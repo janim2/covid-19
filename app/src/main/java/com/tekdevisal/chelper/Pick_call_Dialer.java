@@ -41,7 +41,7 @@ public class Pick_call_Dialer extends AppCompatActivity {
     private Snackbar snackbar;
     private MediaPlayer player;
     private Accessories dialer_accessor;
-    private MainActivity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,6 @@ public class Pick_call_Dialer extends AppCompatActivity {
 
         dialer_intent = getIntent();
         myauth = FirebaseAuth.getInstance();
-        activity = new MainActivity();
         dialer_accessor = new Accessories(Pick_call_Dialer.this);
 
         registerReceiver(close_me, new IntentFilter("to_close"));
@@ -59,9 +58,9 @@ public class Pick_call_Dialer extends AppCompatActivity {
         player.start();
 //        ringtone ends here
 
-        doc_id = dialer_intent.getStringExtra("doc_id");
-        doc_name = dialer_intent.getStringExtra("doc_name");
-        which_action = dialer_intent.getStringExtra("action");
+        doc_id = dialer_accessor.getString("doc_id");
+        doc_name = dialer_accessor.getString("doc_name");
+        which_action = dialer_accessor.getString("action");
 
         name_calling = findViewById(R.id.name_calling);
         accept_call = findViewById(R.id.make_call);
@@ -77,13 +76,10 @@ public class Pick_call_Dialer extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
                                 if(snap.exists()){
-                                    call_reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                startActivity(new Intent(getApplicationContext(), Live_Chat.class));
-                                                finish();
-                                            }
+                                    call_reference.removeValue().addOnCompleteListener(task -> {
+                                        if(task.isSuccessful()){
+                                            startActivity(new Intent(getApplicationContext(), Live_Chat.class));
+                                            finish();
                                         }
                                     });
 
@@ -110,16 +106,17 @@ public class Pick_call_Dialer extends AppCompatActivity {
         accept_call.setOnClickListener(v -> {
             player.stop();
                 if(isNetworkAvailable()){
-                    Toast.makeText(Pick_call_Dialer.this, "Testing", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(Pick_call_Dialer.this, "Testing", Toast.LENGTH_LONG).show();
                     DatabaseReference pick_call = FirebaseDatabase.getInstance().getReference("calls")
                             .child(myauth.getCurrentUser().getUid());
 
                     pick_call.child("picked").setValue("picked").addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             Intent gotovideo = new Intent(getApplicationContext(), VideoChat_Activity.class);
-                            gotovideo.putExtra("action","ipicked");
-                            gotovideo.putExtra("users_name",doc_name);
-                            gotovideo.putExtra("users_id",doc_id);
+                            gotovideo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            dialer_accessor.put("action","ipicked");
+                            dialer_accessor.put("users_name",doc_name);
+                            dialer_accessor.put("users_id",doc_id);
                             new Accessories(getApplicationContext()).put("action", "ipicked");
                             startActivity(gotovideo);
                             finish();
@@ -142,99 +139,9 @@ public class Pick_call_Dialer extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private class iscall_picked extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            final Handler thehandler;
-
-            thehandler = new Handler(Looper.getMainLooper());
-            final int delay = 15000;
-
-            thehandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(isNetworkAvailable()){
-                        hasCallBeenPicked();
-                    }else{
-//                        Toast.makeText(Admin_MainActivity.this,"checking", Toast.LENGTH_LONG).show();
-                    }
-                    thehandler.postDelayed(this,delay);
-                }
-            },delay);
-            return null;
-        }
-    }
-
-    private void hasCallBeenPicked() {
-        try{
-            if(which_action.equals("iamcalling")){
-                if(isNetworkAvailable()){
-                    FirebaseDatabase.getInstance().getReference("calls")
-                            .orderByChild("ringing")
-                            .equalTo(myauth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot snap : dataSnapshot.getChildren()) {
-//                            String value = snap.getValue(String.class);
-                                String key = snap.getKey();
-                                FirebaseDatabase.getInstance().getReference("calls")
-                                        .child(key).addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if(dataSnapshot.hasChild("picked")){
-                                            if(has_opened_video.equals("")){
-                                                Intent gotoVideo = new Intent(getApplicationContext(), VideoActivity.class);
-                                                gotoVideo.putExtra("action", "icalled");
-                                                startActivity(gotoVideo);
-                                                finish();
-                                                has_opened_video = "open";
-                                            }
-                                        }else{
-//                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                            finish();
-//                                            try{
-//                                                FirebaseDatabase.getInstance().getReference("calls").child(myauth.getCurrentUser().getUid())
-//                                                        .removeValue().addOnCompleteListener(task -> {
-//                                                    if(task.isSuccessful()){
-//                                                        startActivity(new Intent(getApplicationContext(), Live_Chat.class));
-//                                                        finish();
-//                                                    }
-//                                                });
-//                                            }catch (NullPointerException e){
-//                                                e.printStackTrace();
-//                                            }
-
-
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                }
-            }
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-//        new iscall_picked().execute();
     }
 
     private final BroadcastReceiver close_me = new BroadcastReceiver() {
