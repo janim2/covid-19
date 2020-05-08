@@ -23,7 +23,7 @@ import java.util.Objects;
 public class Incoming_calls_service extends Service {
 
     FirebaseAuth myauth = FirebaseAuth.getInstance();
-    String caller_id = "", caller_name;
+    String caller_id = "", caller_name, token="";
     Accessories serviceAccessor;
 
     @Nullable
@@ -43,6 +43,7 @@ public class Incoming_calls_service extends Service {
                 if (dataSnapshot.exists()){
                     if(dataSnapshot.hasChild("ringing")) {
                         caller_id = dataSnapshot.child("ringing").getValue().toString();
+                        token = dataSnapshot.child("token").getValue().toString();
                         DatabaseReference getname = FirebaseDatabase.getInstance().getReference("users")
                                 .child(caller_id);
                         getname.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -55,6 +56,7 @@ public class Incoming_calls_service extends Service {
                                     serviceAccessor = new Accessories(getApplicationContext());
                                     serviceAccessor.put("doc_id", caller_id);
                                     serviceAccessor.put("doc_name", caller_name);
+                                    serviceAccessor.put("token", token);
                                     serviceAccessor.put("action", "accepting_call");
                                     startActivity(gotodialer);
                                 }

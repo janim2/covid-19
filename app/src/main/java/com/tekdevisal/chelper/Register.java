@@ -26,8 +26,9 @@ import com.tekdevisal.chelper.LocationUtil.LocationHelper;
 
 import java.util.HashMap;
 
-public class Register extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class Register extends AppCompatActivity {
+//        implements GoogleApiClient.ConnectionCallbacks,
+//        GoogleApiClient.OnConnectionFailedListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private EditText name;
     private Accessories register_accessor;
@@ -50,13 +51,13 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
 
         register_accessor = new Accessories(Register.this);
 
-        locationHelper = new LocationHelper(Register.this);
-        locationHelper.checkpermission();
-
-        if(locationHelper.checkPlayServices()){
-            locationHelper.buildGoogleApiClient();
-
-        }
+//        locationHelper = new LocationHelper(Register.this);
+//        locationHelper.checkpermission();
+//
+//        if(locationHelper.checkPlayServices()){
+//            locationHelper.buildGoogleApiClient();
+//
+//        }
 
         progressBar = new ProgressDialog(this);
 
@@ -92,16 +93,16 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
 
     private void Save_name(String name) {
         try {
-            myLocation = locationHelper.getLocation();
-
-            latitudeD = myLocation.getLatitude();
-            longitudeD = myLocation.getLongitude();
+//            myLocation = locationHelper.getLocation();
+//
+//            latitudeD = myLocation.getLatitude();
+//            longitudeD = myLocation.getLongitude();
 
             final HashMap<String, Object> register = new HashMap<>();
             register.put("name", name);
             register.put("image", "None");
-            register.put("latitude", latitudeD);
-            register.put("longitude", longitudeD);
+//            register.put("latitude", latitudeD);
+//            register.put("longitude", longitudeD);
 
             if (user_type.equals("normal_user")){
                 if(mauth.getCurrentUser() != null){
@@ -109,8 +110,8 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
                     user_reference.setValue(register).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             register_accessor.put("has_named", "true");
-                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
-                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
+//                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
+//                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
                             startActivity(new Intent(Register.this, MainActivity.class));
                             finish();
                         }
@@ -124,8 +125,8 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
                     doctor_reference.setValue(register).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             register_accessor.put("has_named", "true");
-                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
-                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
+//                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
+//                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
                             startActivity(new Intent(Register.this, MainActivity.class));
                             finish();
                         }
@@ -138,40 +139,40 @@ public class Register extends AppCompatActivity implements GoogleApiClient.Conne
         }
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        myLocation = locationHelper.getLocation();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        locationHelper.connectApiClient();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i("Connection Failure","Connnection Error = " +
-                connectionResult.getErrorCode());
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        locationHelper.onActivityResult(requestCode,resultCode,data);
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        locationHelper.onRequestPermissionsResult(requestCode,permissions,grantResults);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        locationHelper.checkPlayServices();
-
-    }
+//    @Override
+//    public void onConnected(@Nullable Bundle bundle) {
+//        myLocation = locationHelper.getLocation();
+//    }
+//
+//    @Override
+//    public void onConnectionSuspended(int i) {
+//        locationHelper.connectApiClient();
+//    }
+//
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//        Log.i("Connection Failure","Connnection Error = " +
+//                connectionResult.getErrorCode());
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        locationHelper.onActivityResult(requestCode,resultCode,data);
+//
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        locationHelper.onRequestPermissionsResult(requestCode,permissions,grantResults);
+//
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        locationHelper.checkPlayServices();
+//
+//    }
 }

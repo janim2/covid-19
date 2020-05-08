@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Covaid</string>
+    <string name="token">cHJvdmlzaW9uAHVzZXIxQGJlNTlhMC52aWR5by5pbwA2Mzc1NTYwNjIxOQAANWY1ZWUxYTY0MWFlYzBlYzc3MmEzMjhmNjhiZDgyOTE2YjVjNjgwOTlmMzU3OThkNTZiODZiMTg3ZjQ4ODU3MTYyZjYxZTFlMDQ0MTUzZjczN2I2YTE4NDdmOTYzOTZm</string>
+    <string name="vidyoapi">e9e8acbf018a47d3b29bcbb45a4b6411</string>
+
 
     <string name="action_settings">Settings</string>
 

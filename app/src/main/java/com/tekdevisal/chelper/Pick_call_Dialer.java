@@ -33,7 +33,7 @@ import com.tekdevisal.chelper.Helpers.Accessories;
 
 public class Pick_call_Dialer extends AppCompatActivity {
 
-    private String doc_id, doc_name, which_action, has_opened_video;
+    private String doc_id, doc_name, which_action, has_opened_video, the_token="";
     private Intent dialer_intent;
     private TextView name_calling;
     private ImageView endcall, accept_call;
@@ -60,11 +60,14 @@ public class Pick_call_Dialer extends AppCompatActivity {
 
         doc_id = dialer_accessor.getString("doc_id");
         doc_name = dialer_accessor.getString("doc_name");
+        the_token = dialer_accessor.getString("token");
         which_action = dialer_accessor.getString("action");
 
         name_calling = findViewById(R.id.name_calling);
         accept_call = findViewById(R.id.make_call);
         endcall = findViewById(R.id.cancel_call);
+
+//        Toast.makeText(Pick_call_Dialer.this, "token"+the_token, Toast.LENGTH_LONG).show();
 
         name_calling.setText(doc_name);
         endcall.setOnClickListener(v -> {
@@ -112,12 +115,12 @@ public class Pick_call_Dialer extends AppCompatActivity {
 
                     pick_call.child("picked").setValue("picked").addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
+
                             Intent gotovideo = new Intent(getApplicationContext(), VideoChat_Activity.class);
                             gotovideo.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             dialer_accessor.put("action","ipicked");
                             dialer_accessor.put("users_name",doc_name);
                             dialer_accessor.put("users_id",doc_id);
-                            new Accessories(getApplicationContext()).put("action", "ipicked");
                             startActivity(gotovideo);
                             finish();
 

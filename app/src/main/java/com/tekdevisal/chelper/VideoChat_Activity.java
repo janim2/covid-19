@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tekdevisal.chelper.Helpers.Accessories;
+import com.tekdevisal.chelper.VidyoAPI.GenerateToken;
 import com.tekdevisal.chelper.VidyoAPI.IVideoFrameListener;
 import com.tekdevisal.chelper.VidyoAPI.Logger;
 import com.tekdevisal.chelper.VidyoAPI.VideoFrameLayout;
@@ -122,6 +123,7 @@ public class VideoChat_Activity extends Activity implements
     private TextView client_name;
     private FirebaseAuth myauth;
     private Accessories videoaccessor;
+    private String generatedtoken;
 
     /*
      *  Operating System Events
@@ -169,10 +171,19 @@ public class VideoChat_Activity extends Activity implements
         doctors_id = videoaccessor.getString("doc_id");
         //strings
 
+
+
         if(action.equals("ipicked")){
             client_name.setText(users_name +", ");
+            // TODO: fetch token from database
+            generatedtoken = videoaccessor.getString("token");
+//            Toast.makeText(VideoChat_Activity.this, "doc_token"+generatedtoken, Toast.LENGTH_LONG).show();
+
         }else{
             client_name.setText(doctors_name);
+            //generated token
+            generatedtoken = GenerateToken.generateProvisionToken(getResources().getString(R.string.vidyoapi), "" + "@" + "be59a0.vidyo.io" , "10000", "");
+//            Toast.makeText(VideoChat_Activity.this, "user_token"+generatedtoken, Toast.LENGTH_LONG).show();
         }
 
         // Set the application's UI context to this activity.
@@ -276,7 +287,7 @@ public class VideoChat_Activity extends Activity implements
                 mHost.setText( param != null ? param : "prod.vidyo.io");
 
                 param = uri.getQueryParameter("token");
-                mToken.setText(param != null ? param : "cHJvdmlzaW9uAHVzZXIxQGJlNTlhMC52aWR5by5pbwA2Mzc1NTYwNjIxOQAANWY1ZWUxYTY0MWFlYzBlYzc3MmEzMjhmNjhiZDgyOTE2YjVjNjgwOTlmMzU3OThkNTZiODZiMTg3ZjQ4ODU3MTYyZjYxZTFlMDQ0MTUzZjczN2I2YTE4NDdmOTYzOTZm");
+                mToken.setText(param != null ? param : generatedtoken);
 
                 param = uri.getQueryParameter("displayName");
                 mDisplayName.setText(param != null ? param : "Demo User");
@@ -312,7 +323,7 @@ public class VideoChat_Activity extends Activity implements
             } else {
                 // If this app was launched by a different app, then get any parameters; otherwise use default settings.
                 mHost.setText(intent.hasExtra("host") ? intent.getStringExtra("host") : "prod.vidyo.io");
-                mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : "cHJvdmlzaW9uAHVzZXIxQGJlNTlhMC52aWR5by5pbwA2Mzc1NTYwNjIxOQAANWY1ZWUxYTY0MWFlYzBlYzc3MmEzMjhmNjhiZDgyOTE2YjVjNjgwOTlmMzU3OThkNTZiODZiMTg3ZjQ4ODU3MTYyZjYxZTFlMDQ0MTUzZjczN2I2YTE4NDdmOTYzOTZm");
+                mToken.setText(intent.hasExtra("token") ? intent.getStringExtra("token") : generatedtoken);
                 mDisplayName.setText(intent.hasExtra("displayName") ? intent.getStringExtra("displayName") : "DemoUser");
                 mResourceId.setText(intent.hasExtra("resourceId") ? intent.getStringExtra("resourceId") : "DemoRoom");
                 mReturnURL = intent.hasExtra("returnURL") ? intent.getStringExtra("returnURL") : null;
@@ -663,7 +674,7 @@ public class VideoChat_Activity extends Activity implements
 
                     if (!mVidyoConnector.connect(
                             mHost.getText().toString().trim(),
-                            "cHJvdmlzaW9uAHVzZXIxQGJlNTlhMC52aWR5by5pbwA2Mzc1NTYwNjIxOQAANWY1ZWUxYTY0MWFlYzBlYzc3MmEzMjhmNjhiZDgyOTE2YjVjNjgwOTlmMzU3OThkNTZiODZiMTg3ZjQ4ODU3MTYyZjYxZTFlMDQ0MTUzZjczN2I2YTE4NDdmOTYzOTZm",
+                            generatedtoken,
 //                            mToken.getText().toString().trim(),
                             mDisplayName.getText().toString().trim(),
                             resourceId,
@@ -793,6 +804,7 @@ public class VideoChat_Activity extends Activity implements
     private void Ring_doctor() {
         final HashMap<String, Object> calling = new HashMap<>();
         calling.put("ringing", myauth.getCurrentUser().getUid());
+        calling.put("token", generatedtoken);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("calls");
         reference.child(doctors_id).setValue(calling).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
