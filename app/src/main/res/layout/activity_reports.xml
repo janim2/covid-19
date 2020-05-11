@@ -29,9 +29,8 @@
             app:cardCornerRadius="25dp"
             app:cardElevation="20dp"
             android:minHeight="100px"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:layout_width="match_parent"

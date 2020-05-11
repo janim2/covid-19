@@ -2,6 +2,7 @@ package com.tekdevisal.chelper;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,10 +20,19 @@ public class Statistics extends AppCompatActivity {
         browser = findViewById(R.id.webview);
         browser.setWebViewClient(new MyBrowser());
 
-        browser.loadUrl("https://ghanahealthservice.org/covid19/");
+        browser.getSettings().setBuiltInZoomControls(false);
+        browser.getSettings().setJavaScriptEnabled(true);
+        browser.getSettings().setSupportZoom(false);
+        browser.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        browser.getSettings().setAllowFileAccess(true);
+        browser.getSettings().setDomStorageEnabled(true);
+
+        browser.loadUrl("https://www.worldometers.info/coronavirus/");
+//        browser.loadUrl("https://ghanahealthservice.org/covid19");
+//        browser.loadUrl("https://www.coronatracker.com/country/ghana/");
     }
 
-    private class MyBrowser extends WebViewClient {
+    private static class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);

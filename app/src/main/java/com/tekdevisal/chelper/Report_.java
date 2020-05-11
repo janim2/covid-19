@@ -155,6 +155,7 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
             report_.put("message", message);
             report_.put("latitude", latitudeD);
             report_.put("longitude", longitudeD);
+            report_.put("phone_number", myauth.getCurrentUser().getPhoneNumber());
 //            report_.put("address", location_address);
 
             reference.push().setValue(report_).addOnCompleteListener(task -> {

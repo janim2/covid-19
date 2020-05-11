@@ -32,12 +32,14 @@
         android:roundIcon="@mipmap/logo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CovidTips"></activity>
+        <activity android:name=".Report_Details"
+            android:parentActivityName=".Report_"></activity>
+        <activity android:name=".CovidTips" />
         <activity
             android:name=".Pick_call_Dialer"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".VideoChat_Activity"
             android:screenOrientation="portrait"
@@ -95,6 +97,11 @@
             android:name=".Report_"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

@@ -33,7 +33,7 @@ public class Reports extends AppCompatActivity {
     private RecyclerView.Adapter report_Adapter;
     private TextView no_reports;
     private Snackbar snackbar;
-    private String title, message;
+    private String title, message, phone_number;
     private Double latitude_, longitude_;
 
     @Override
@@ -108,12 +108,12 @@ public class Reports extends AppCompatActivity {
         }
     }
 
-    private void fetchReports(String person_who_uploaded_id,String key) {
+    private void fetchReports(String person_who_uploaded_id,String report_key) {
         try {
             no_reports.setVisibility(View.GONE);
             DatabaseReference fetch_report =
                     FirebaseDatabase.getInstance().getReference("reports")
-                            .child(person_who_uploaded_id).child(key);
+                            .child(person_who_uploaded_id).child(report_key);
             fetch_report.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,12 +135,17 @@ public class Reports extends AppCompatActivity {
                                 longitude_ = Double.valueOf(child.getValue().toString());
                             }
 
+                            if(child.getKey().equals("phone_number")){
+                                phone_number = child.getValue().toString();
+                            }
+
                             else{
 //                            Toast.makeText(getActivity(),"Couldn't fetch posts",Toast.LENGTH_LONG).show();
                             }
                         }
                         LatLng user_location = new LatLng(latitude_,longitude_);
-                        Report_Model obj = new Report_Model(key,title, message, user_location);
+                        Report_Model obj = new Report_Model(report_key,person_who_uploaded_id,
+                                title, message, user_location,phone_number);
                         reportArray.add(obj);
                         report_RecyclerView.setAdapter(report_Adapter);
                         report_Adapter.notifyDataSetChanged();
