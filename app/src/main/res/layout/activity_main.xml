@@ -107,7 +107,7 @@
             android:src="@drawable/complain"
             android:scaleType="centerCrop"
             android:padding="10dp"
-            android:background="@drawable/curved_corners"/>
+            android:background="@drawable/curved_corners_red"/>
 
         <ImageView
             android:layout_width="66dp"

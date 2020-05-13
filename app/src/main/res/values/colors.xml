@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#eae7d9</color>
     <color name="colorAccent">#d2c6b2</color>
     <color name="text_color">#937d14</color>
+    <color name="shaded_red">#A5333D</color>
     <color name="design_snackbar_background_color" tools:override="true">@color/colorPrimary</color>
 </resources>
