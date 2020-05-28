@@ -32,8 +32,10 @@
         android:roundIcon="@mipmap/logo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Report_Details"
-            android:parentActivityName=".Report_"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity
+            android:name=".Report_Details"
+            android:parentActivityName=".Report_" />
         <activity android:name=".CovidTips" />
         <activity
             android:name=".Pick_call_Dialer"

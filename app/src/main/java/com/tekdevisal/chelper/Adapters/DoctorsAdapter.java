@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tekdevisal.chelper.ChatActivity;
 import com.tekdevisal.chelper.Helpers.Accessories;
 import com.tekdevisal.chelper.Models.Doctors;
 import com.tekdevisal.chelper.R;
@@ -60,7 +61,7 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
         doc_card.setOnClickListener(v -> {
             adapater = new Accessories(context);
             if(adapater.getString("user_type").equals("doctor")){
-                Toast.makeText(context,"messaging functionality will be added soon", Toast.LENGTH_LONG).show();
+                createChat(itemList.get(position).getId(),auth.getUid(),itemList.get(position).getName());
             }else{
                 Intent togoCall = new Intent(context, VideoChat_Activity.class);
                 adapater.put("doc_id", itemList.get(position).getId());
@@ -70,7 +71,25 @@ public class DoctorsAdapter extends RecyclerView.Adapter<DoctorsAdapter.ViewHold
             }
 
         });
+    }
 
+    private void createChat(String person_to_chatID, String myID, String person_toChatName){
+        String key = FirebaseDatabase.getInstance().getReference("chat").push().getKey();
+        DatabaseReference createchat_reference = FirebaseDatabase.getInstance()
+                .getReference("chat");
+        final HashMap<String, Object> create_chat = new HashMap<>();
+        create_chat.put("chat_creator", myID);
+        create_chat.put("recepient", person_to_chatID);
+
+        createchat_reference.child(person_to_chatID).setValue(create_chat).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                Intent chat_activity = new Intent(context, ChatActivity.class);
+                adapater.put("current_chat_ID", person_to_chatID);
+                adapater.put("current_chat_name", person_toChatName);
+                adapater.put("person_iam_chattingID", person_to_chatID);
+                context.startActivity(chat_activity);
+            }
+        });
 
     }
 
