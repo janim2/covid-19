@@ -92,15 +92,6 @@
         app:layout_constraintVertical_bias="0.428">
 
         <ImageView
-            android:id="@+id/info"
-            android:layout_width="66dp"
-            android:layout_height="66dp"
-            android:src="@drawable/info"
-            android:scaleType="centerCrop"
-            android:padding="10dp"
-            android:background="@drawable/curved_corners"/>
-
-        <ImageView
             android:layout_width="66dp"
             android:layout_height="66dp"
             android:id="@+id/complain"
@@ -136,6 +127,16 @@
             android:scaleType="centerCrop"
             android:padding="10dp"
             android:background="@drawable/curved_corners"/>
+
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/info"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:background="@drawable/curved_corners"/>
+
 
         <ImageView
             android:layout_width="66dp"

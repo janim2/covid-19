@@ -110,6 +110,7 @@ public class Register extends AppCompatActivity {
                     user_reference.setValue(register).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             register_accessor.put("has_named", "true");
+                            register_accessor.put("my_name", name);
 //                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
 //                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
                             startActivity(new Intent(Register.this, MainActivity.class));
@@ -125,6 +126,7 @@ public class Register extends AppCompatActivity {
                     doctor_reference.setValue(register).addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
                             register_accessor.put("has_named", "true");
+                            register_accessor.put("my_name", name);
 //                            register_accessor.put("saved_latitude", String.valueOf(latitudeD));
 //                            register_accessor.put("saved_longitude", String.valueOf(longitudeD));
                             startActivity(new Intent(Register.this, MainActivity.class));

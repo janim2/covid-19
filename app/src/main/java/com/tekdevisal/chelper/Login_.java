@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,6 +68,7 @@ public class Login_ extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
 
         phonetext = findViewById(R.id.phoneText);
+
         codeText = findViewById(R.id.codeText);
         continueNextButton = findViewById(R.id.continueNextButton);
         layout = findViewById(R.id.phoneAuth);
@@ -107,13 +110,14 @@ public class Login_ extends AppCompatActivity {
                         signInWithPhoneAuthCredential(credential);
                     }
                 }else{
-                    loadingbar.setTitle("Sending code");
-                    loadingbar.setMessage("Please Wait. We are sending code to phone number");
-                    loadingbar.setCanceledOnTouchOutside(false);
-                    loadingbar.show();
                     phoneNumber = ccp.getFullNumberWithPlus();
                     if(!phoneNumber.equals("")){
                         if(!which_user.equals("")){
+                            loadingbar.setTitle("Sending code");
+                            loadingbar.setMessage("Please Wait. We are sending code to phone number");
+                            loadingbar.setCanceledOnTouchOutside(false);
+                            loadingbar.show();
+                            phoneNumber.replaceFirst("^0+(?!$)","");
                             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                                     phoneNumber,        // Phone number to verify
                                     60,                 // Timeout duration

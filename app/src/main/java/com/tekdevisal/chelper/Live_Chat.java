@@ -118,14 +118,13 @@ public class Live_Chat extends AppCompatActivity {
             no_docs.setVisibility(View.GONE);
             DatabaseReference fetch_docs =
                     FirebaseDatabase.getInstance().getReference("users").child(key);
-            fetch_docs.addListenerForSingleValueEvent(new ValueEventListener() {
+            fetch_docs.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()){
                         for(DataSnapshot child : dataSnapshot.getChildren()){
                             if(child.getKey().equals("name")){
                                 doc_name = child.getValue().toString();
-
                             } else{
 //                            Toast.makeText(getActivity(),"Couldn't fetch posts",Toast.LENGTH_LONG).show();
                             }

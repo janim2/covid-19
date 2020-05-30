@@ -23,6 +23,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -77,6 +79,22 @@ public class MainActivity extends AppCompatActivity {
     private LocationHelper locationHelper;
     private Location myLocation;
     double latitudeD,longitudeD;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.chats:
+                startActivity(new Intent(MainActivity.this, MyChats.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 if(isNetworkAvailable()){
                     FirebaseAuth.getInstance().signOut();
                     main_accessor.put("has_named", "false");
+//                    main_accessor.put("first_open", false);
                     Doctor_is_UnAvailable();
                     startActivity(new Intent(MainActivity.this,Login_.class));
                 }else{
@@ -242,18 +261,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(mauth.getCurrentUser() != null){
-            if(new Accessories(this).getString("has_named").equals("true")){
-                if(main_accessor.getString("has_made_available").equals("yes")){
-                    is_available_switch.setChecked(true);
+//        if(main_accessor.getBoolean("first_open")){
+            if(mauth.getCurrentUser() != null){
+                if(new Accessories(this).getString("has_named").equals("true")){
+                    if(main_accessor.getString("has_made_available").equals("yes")){
+                        is_available_switch.setChecked(true);
+                    }
+                    startService(new Intent(MainActivity.this, Incoming_calls_service.class));
+                }else{
+                    startActivity(new Intent(MainActivity.this, Register.class));
                 }
-                startService(new Intent(MainActivity.this, Incoming_calls_service.class));
             }else{
-                startActivity(new Intent(MainActivity.this, Register.class));
+                startActivity(new Intent(MainActivity.this, Login_.class));
             }
-        }else{
-            startActivity(new Intent(MainActivity.this, Login_.class));
-        }
+//        }else{
+//            startActivity(new Intent(MainActivity.this, IntroActivity.class));
+//        }
+
     }
 
     private boolean isNetworkAvailable() {
